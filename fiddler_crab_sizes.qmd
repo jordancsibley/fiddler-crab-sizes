@@ -1,11 +1,20 @@
 ---
 title: "Fiddler Crab Size"
 format: html
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r}
 library(lterdatasampler)
+library(tidyverse)
 
 crabs <- pie_crab
+
+
+ggplot(data = crabs, aes(x = latitude, y = size)) + 
+  geom_point()
+
+
 ```
 
