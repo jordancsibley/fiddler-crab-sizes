@@ -1,20 +1,40 @@
 ---
-title: "Fiddler Crab Size"
 format: html
 editor_options: 
   chunk_output_type: console
+execute: 
+  warning: false
+  echo: false
 ---
 
 ```{r}
 library(lterdatasampler)
 library(tidyverse)
+library(kableExtra)
 
 crabs <- pie_crab
 
 
 ggplot(data = crabs, aes(x = latitude, y = size)) + 
-  geom_point()
+  geom_point() +
+  labs(caption = "This is my caption")
 
 
+```
+
+```{r}
+#crabs %>%
+ # mutate(mean = mean(size), sd_width = sd(size), sample=n()) %>%
+  # select(mean, sd_width, sample) %>%
+ # kable(col.names = c("Mean", "Standard Deviation", "Sample Size"))
+
+
+crabs %>% 
+  summarise(mean = mean(size), sd_width = sd(size), sample=n()) %>% 
+  kable(col.names = c("Mean", "Standard Deviation", "Sample Size"), caption = "Fiddler crab carapace widths (mm)" ) %>% 
+  kable_classic() 
+
+
+  
 ```
 
